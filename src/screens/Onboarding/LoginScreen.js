@@ -17,6 +17,10 @@ export default function LoginScreen() {
         console.log("Login Attempted with:", email, password);
     };
 
+    const handleSignUp = () => {
+        navigation.navigate('CreateScreen');  // Navegar para a tela de criação de conta
+    };
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
@@ -87,7 +91,7 @@ export default function LoginScreen() {
 
                 <View style={styles.signupContainer}>
                     <Text style={styles.signupText}>
-                        Don't have an account? <Text style={styles.signupLink}>Sign Up</Text>
+                        Don't have an account? <Text style={styles.signupLink} onPress={handleSignUp}>Sign Up</Text>
                     </Text>
                 </View>
             </View>

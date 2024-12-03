@@ -13,12 +13,13 @@ export default function LoginScreen() {
         navigation.navigate('IntroScreen');
     };
 
-    const handleLogin = () => {
-        console.log("Login Attempted with:", email, password);
-    };
 
     const handleSignUp = () => {
         navigation.navigate('CreateScreen');  // Navegar para a tela de criação de conta
+    };
+
+    const handleHome = () => {
+        navigation.navigate('HomeScreen');
     };
 
     return (
@@ -61,7 +62,7 @@ export default function LoginScreen() {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                <TouchableOpacity style={styles.loginButton} onPress={handleHome}>
                     <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
 

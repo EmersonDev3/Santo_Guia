@@ -25,6 +25,21 @@ export default function HomeScreen() {
                     placeholderTextColor="#aaa"
                 />
             </View>
+
+            <View style={styles.rowBoxes}>
+                <View style={[styles.boxItem, { backgroundColor: '#d1b3e2' }]}>
+                    <Icon name="home" size={22} color="#fff" />
+                </View>
+                <View style={[styles.boxItem, { backgroundColor: '#ff8c00' }]}>
+                    <Icon name="cogs" size={22} color="#fff" />
+                </View>
+                <View style={[styles.boxItem, { backgroundColor: '#4caf50' }]}>
+                    <Icon name="heart" size={22} color="#fff" />
+                </View>
+                <View style={[styles.boxItem, { backgroundColor: '#2196f3' }]}>
+                    <Icon name="bell" size={22} color="#fff" />
+                </View>
+            </View>
         </View>
     );
 }
@@ -93,5 +108,21 @@ const styles = StyleSheet.create({
         height: '100%',
         fontSize: 18,
         color: '#333',
+    },
+    rowBoxes: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        marginTop: 30,
+    },
+    boxItem: {
+        width: '20%',  
+        height: 75,    
+        borderRadius: 15, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        padding: 10,   
+        paddingTop:10,
+        
     },
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import NavbarComponent from '../../components/NavbarComponent';
 
 export default function HomeScreen() {
     return (
@@ -18,7 +19,7 @@ export default function HomeScreen() {
             </View>
 
             <View style={styles.searchContainer}>
-                <Icon name="search" size={20} color="#aaa" style={styles.searchIcon} />
+                <Icon name="search" size={20} color="#555" style={styles.searchIcon} />
                 <TextInput
                     style={styles.searchInput}
                     placeholder="Buscar..."
@@ -26,20 +27,30 @@ export default function HomeScreen() {
                 />
             </View>
 
+            {/* Botões de funcionalidades */}
             <View style={styles.rowBoxes}>
-                <View style={[styles.boxItem, { backgroundColor: '#d1b3e2' }]}>
-                    <Icon name="home" size={22} color="#fff" />
+                {/* Liturgia */}
+                <View style={[styles.boxItem, { backgroundColor: '#6A5ACD' }]}>
+                    <Icon name="bible" size={22} color="#fff" />
+                    <Text style={styles.boxLabel}>Liturgia</Text>
                 </View>
-                <View style={[styles.boxItem, { backgroundColor: '#ff8c00' }]}>
-                    <Icon name="cogs" size={22} color="#fff" />
+                {/* Eventos */}
+                <View style={[styles.boxItem, { backgroundColor: '#FF6347' }]}>
+                    <Icon name="calendar-alt" size={22} color="#fff" />
+                    <Text style={styles.boxLabel}>Eventos</Text>
                 </View>
-                <View style={[styles.boxItem, { backgroundColor: '#4caf50' }]}>
-                    <Icon name="heart" size={22} color="#fff" />
+                {/* Peça sua oração */}
+                <View style={[styles.boxItem, { backgroundColor: '#4682B4' }]}>
+                    <Icon name="hands" size={22} color="#fff" />
+                    <Text style={styles.boxLabel}>Oração</Text>
                 </View>
-                <View style={[styles.boxItem, { backgroundColor: '#2196f3' }]}>
-                    <Icon name="bell" size={22} color="#fff" />
+                {/* Favoritos */}
+                <View style={[styles.boxItem, { backgroundColor: '#FFD700' }]}>
+                    <Icon name="star" size={22} color="#fff" />
+                    <Text style={styles.boxLabel}>Favoritos</Text>
                 </View>
             </View>
+            <NavbarComponent />
         </View>
     );
 }
@@ -49,7 +60,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'start',
         alignItems: 'center',
-        backgroundColor: '#ffff',
+        backgroundColor: '#fff', // Fundo branco
         paddingTop: 50,
     },
     box: {
@@ -67,7 +78,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 30,
-        backgroundColor: '#d1b3e2',
+        backgroundColor: '#444', // Círculo com tom mais escuro
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -78,18 +89,18 @@ const styles = StyleSheet.create({
     smallText: {
         fontSize: 18,
         fontWeight: '400',
-        color: '#aaa',
+        color: '#555', // Texto pequeno em cinza escuro
         marginBottom: 1,
     },
     largeText: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#000',
+        color: '#000', // Texto principal em preto
     },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#f0f0f0', // Fundo de busca cinza claro
         borderRadius: 30,
         paddingHorizontal: 15,
         marginTop: 20,
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         fontSize: 18,
-        color: '#333',
+        color: '#333', // Texto da busca em cinza escuro
     },
     rowBoxes: {
         flexDirection: 'row',
@@ -116,13 +127,17 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     boxItem: {
-        width: '20%',  
-        height: 75,    
-        borderRadius: 15, 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        padding: 10,   
-        paddingTop:10,
-        
+        width: '22%', // Ajuste da largura
+        height: 90, // Altura dos botões
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+    },
+    boxLabel: {
+        marginTop: 5,
+        fontSize: 12,
+        color: '#fff', // Texto branco
+        textAlign: 'center',
     },
 });

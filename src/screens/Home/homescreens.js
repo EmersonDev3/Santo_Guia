@@ -27,29 +27,7 @@ export default function HomeScreen() {
                 />
             </View>
 
-            {/* Botões de funcionalidades */}
-            <View style={styles.rowBoxes}>
-                {/* Liturgia */}
-                <View style={[styles.boxItem, { backgroundColor: '#6A5ACD' }]}>
-                    <Icon name="bible" size={22} color="#fff" />
-                    <Text style={styles.boxLabel}>Liturgia</Text>
-                </View>
-                {/* Eventos */}
-                <View style={[styles.boxItem, { backgroundColor: '#FF6347' }]}>
-                    <Icon name="calendar-alt" size={22} color="#fff" />
-                    <Text style={styles.boxLabel}>Eventos</Text>
-                </View>
-                {/* Peça sua oração */}
-                <View style={[styles.boxItem, { backgroundColor: '#4682B4' }]}>
-                    <Icon name="hands" size={22} color="#fff" />
-                    <Text style={styles.boxLabel}>Oração</Text>
-                </View>
-                {/* Favoritos */}
-                <View style={[styles.boxItem, { backgroundColor: '#FFD700' }]}>
-                    <Icon name="star" size={22} color="#fff" />
-                    <Text style={styles.boxLabel}>Favoritos</Text>
-                </View>
-            </View>
+
             <NavbarComponent />
         </View>
     );

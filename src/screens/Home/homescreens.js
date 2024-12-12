@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import NavbarComponent from '../../components/NavbarComponent';
+import IgrejasProximas from '../../components/IgrejasProximasScroll';
 
 export default function HomeScreen() {
     const [activeButton, setActiveButton] = useState('Home');
@@ -62,6 +63,7 @@ export default function HomeScreen() {
                 </TouchableOpacity>
             </View>
 
+            <IgrejasProximas />
             <NavbarComponent />
         </View>
     );
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         paddingTop: 50,
+        
     },
     box: {
         alignItems: 'center',
@@ -124,18 +127,18 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 30,
+        marginTop: 25,
         width: '90%',
+        
     },
     button: {
-        flex: 1,
+        flex: 1,  
         height: 40,
         backgroundColor: '#f9f9f9',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 5,
-        borderWidth: 0,
     },
     activeButton: {
         backgroundColor: '#222',
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 14,
-        color: '#333',
+        color: '#333', 
         fontWeight: 'bold',
     },
     activeText: {

@@ -29,19 +29,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#fff', // Tom de branco suave
+        backgroundColor: '#fff', 
         height: 70,
         width: '100%',
         position: 'absolute',
         bottom: 0,
-        borderTopLeftRadius: 20, // Bordas arredondadas no topo
+        borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         paddingHorizontal: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: -2 },
         shadowOpacity: 0.1,
         shadowRadius: 6,
-        elevation: 5, // Sombras para Android
+        elevation: 5, 
     },
     navItem: {
         alignItems: 'center',

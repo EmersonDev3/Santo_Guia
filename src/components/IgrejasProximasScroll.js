@@ -1,96 +1,149 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'; 
 
-const igrejas = [
-    {
-        id: '1',
-        nome: 'Igreja Central',
-        descricao: 'Uma igreja no coração da cidade.',
-        imagem: 'https://via.placeholder.com/150',
-    },
-    {
-        id: '2',
-        nome: 'Igreja da Paz',
-        descricao: 'Conhecida por sua arquitetura moderna.',
-        imagem: 'https://via.placeholder.com/150',
-    },
-    {
-        id: '3',
-        nome: 'Igreja Nova Esperança',
-        descricao: 'Famosa por suas celebrações comunitárias.',
-        imagem: 'https://via.placeholder.com/150',
-    },
-];
+const IgrejasProximas = () => {
+  const churches = [
+    { id: 1, imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', address: 'Rua 1, Bairro A', likes: 150 },
+    { id: 2, imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/e0/caption.jpg?w=900&h=-1&s=1', address: 'Rua 2, Bairro B', likes: 200 },
+    { id: 3, imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', address: 'Rua 3, Bairro C', likes: 120 },
+  ];
 
-export default function IgrejasProximasScroll() {
-    const renderItem = ({ item }) => (
-        <View style={styles.card}>
-            <Image source={{ uri: item.imagem }} style={styles.image} />
-            <Text style={styles.nome}>{item.nome}</Text>
-            <Text style={styles.descricao}>{item.descricao}</Text>
-        </View>
-    );
+  const [favorited, setFavorited] = useState({});
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.titulo}>Igrejas Próximas</Text>
-            <FlatList
-                data={igrejas}
-                horizontal
-                keyExtractor={(item) => item.id}
-                renderItem={renderItem}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.lista}
-            />
-        </View>
-    );
-}
+  const handleFavorite = (id) => {
+    setFavorited((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Destaques</Text>
+        <TouchableOpacity>
+          <Text style={styles.viewAll}>View All</Text>
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={styles.scrollContainer}
+      >
+        {churches.map((church) => (
+          <View key={church.id} style={styles.card}>
+            <TouchableOpacity
+              style={[styles.favoriteButton, favorited[church.id] && styles.favoriteButtonActive]}
+              onPress={() => handleFavorite(church.id)}
+            >
+              <FontAwesome
+                name={favorited[church.id] ? 'heart' : 'heart-o'}
+                size={30}
+                color={favorited[church.id] ? '#FF6347' : '#fff'}
+                style={styles.favoriteIcon}
+              />
+            </TouchableOpacity>
+            <Image source={{ uri: church.imageUrl }} style={styles.image} />
+            <View style={styles.infoContainer}>
+              <View style={styles.likesContainer}>
+                <FontAwesome
+                  name="heart"
+                  size={20}
+                  color="#FF6347"
+                />
+                <Text style={styles.likesText}>{church.likes}</Text>
+              </View>
+              <Text style={styles.address}>{church.address}</Text>
+            </View>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#f9f9f9',
-        paddingVertical: 20,
+      padding: 16,
+      backgroundColor: '#fff',
+      width: '95%',
+      alignSelf: 'center',
+      marginBottom: 20,
     },
-    titulo: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#333',
-        marginLeft: 20,
-        marginBottom: 10,
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
     },
-    lista: {
-        paddingHorizontal: 10,
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    viewAll: {
+      fontSize: 14,
+      color: '#888',
+      fontWeight: '500',
+    },
+    scrollContainer: {
+      marginTop: 20,
+      width: '100%',
     },
     card: {
-        width: Dimensions.get('window').width * 0.6,
-        backgroundColor: '#fff',
-        borderRadius: 15,
-        marginRight: 15,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 5,
-        alignItems: 'center',
-        padding: 15,
+      width: 220,
+      height: 280, 
+      marginRight: 20,
+      borderRadius: 15,
+      overflow: 'hidden',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 5,
+      position: 'relative',
+      backgroundColor: '#fff',
+    },
+    favoriteButton: {
+      position: 'absolute',
+      top: 10,
+      right: 10,
+      zIndex: 1, 
+      padding: 5,
+      borderRadius: 50, 
     },
     image: {
-        width: '100%',
-        height: 120,
-        borderRadius: 10,
-        marginBottom: 10,
+      width: '100%',
+      height: '100%',
+      borderRadius: 15,
+      resizeMode: 'cover',
     },
-    nome: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#444',
-        marginBottom: 5,
-        textAlign: 'center',
+    infoContainer: {
+      position: 'absolute',
+      bottom: 10,
+      left: 10,
+      right: 10,
+      padding: 10,
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
     },
-    descricao: {
-        fontSize: 14,
-        color: '#666',
-        textAlign: 'center',
+    likesContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 5,
     },
-});
+    likesText: {
+      marginLeft: 5,
+      fontSize: 14,
+      fontWeight: '500',
+      color: '#FF6347',
+    },
+    address: {
+      fontSize: 12,
+      fontWeight: '400',
+      color: '#fff',
+    },
+  });
+export default IgrejasProximas;

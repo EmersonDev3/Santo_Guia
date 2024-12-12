@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#f9f9f9', // Tom de branco suave
+        backgroundColor: '#fff', // Tom de branco suave
         height: 70,
         width: '100%',
         position: 'absolute',

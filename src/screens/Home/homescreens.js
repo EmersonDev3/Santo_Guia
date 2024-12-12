@@ -1,25 +1,22 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import NavbarComponent from '../../components/NavbarComponent';
 
 export default function HomeScreen() {
+    const [activeButton, setActiveButton] = useState('Home');
+
     return (
         <View style={styles.container}>
             <View style={styles.box}>
                 <View style={styles.rowContainer}>
                     <View style={styles.textsContainer}>
                         <Text style={styles.smallText}>Oi, Oliver CEO</Text>
-                        <Text style={styles.largeText}>Find Details</Text>
-                    </View>
-                    <View style={styles.circle}>
-                        <Icon name="user-alt" size={20} color="#fff" />
+                        <Text style={styles.largeText}>Explore Locations</Text>
                     </View>
                 </View>
             </View>
 
             <View style={styles.searchContainer}>
-                <Icon name="search" size={20} color="#555" style={styles.searchIcon} />
                 <TextInput
                     style={styles.searchInput}
                     placeholder="Buscar..."
@@ -27,6 +24,43 @@ export default function HomeScreen() {
                 />
             </View>
 
+            <View style={styles.buttonsContainer}>
+                <TouchableOpacity
+                    style={[styles.button, activeButton === 'Home' && styles.activeButton]}
+                    onPress={() => setActiveButton('Home')}
+                >
+                    <Text style={[styles.buttonText, activeButton === 'Home' && styles.activeText]}>
+                        Home
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.button, activeButton === 'Liturgia' && styles.activeButton]}
+                    onPress={() => setActiveButton('Liturgia')}
+                >
+                    <Text style={[styles.buttonText, activeButton === 'Liturgia' && styles.activeText]}>
+                        Liturgia
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.button, activeButton === 'Eventos' && styles.activeButton]}
+                    onPress={() => setActiveButton('Eventos')}
+                >
+                    <Text style={[styles.buttonText, activeButton === 'Eventos' && styles.activeText]}>
+                        Eventos
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.button, activeButton === 'Favoritos' && styles.activeButton]}
+                    onPress={() => setActiveButton('Favoritos')}
+                >
+                    <Text style={[styles.buttonText, activeButton === 'Favoritos' && styles.activeText]}>
+                        Favoritos
+                    </Text>
+                </TouchableOpacity>
+            </View>
 
             <NavbarComponent />
         </View>
@@ -38,7 +72,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'start',
         alignItems: 'center',
-        backgroundColor: '#fff', // Fundo branco
+        backgroundColor: '#fff',
         paddingTop: 50,
     },
     box: {
@@ -52,14 +86,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
     },
-    circle: {
-        width: 50,
-        height: 50,
-        borderRadius: 30,
-        backgroundColor: '#444', // Círculo com tom mais escuro
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     textsContainer: {
         justifyContent: 'center',
         alignItems: 'flex-start',
@@ -67,55 +93,61 @@ const styles = StyleSheet.create({
     smallText: {
         fontSize: 18,
         fontWeight: '400',
-        color: '#555', // Texto pequeno em cinza escuro
-        marginBottom: 1,
+        color: '#555',
+        marginBottom: 2,
     },
     largeText: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#000', // Texto principal em preto
+        color: '#222',
     },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f0f0f0', // Fundo de busca cinza claro
-        borderRadius: 30,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 15,
         paddingHorizontal: 15,
         marginTop: 20,
         width: '90%',
         height: 50,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.05,
         shadowRadius: 5,
-    },
-    searchIcon: {
-        marginRight: 10,
     },
     searchInput: {
         flex: 1,
         height: '100%',
         fontSize: 18,
-        color: '#333', // Texto da busca em cinza escuro
+        color: '#333',
     },
-    rowBoxes: {
+    buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '90%',
         marginTop: 30,
+        width: '90%',
     },
-    boxItem: {
-        width: '22%', // Ajuste da largura
-        height: 90, // Altura dos botões
-        borderRadius: 15,
+    button: {
+        flex: 1,
+        height: 40,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
+        marginHorizontal: 5,
+        borderWidth: 0,
     },
-    boxLabel: {
-        marginTop: 5,
-        fontSize: 12,
-        color: '#fff', // Texto branco
-        textAlign: 'center',
+    activeButton: {
+        backgroundColor: '#222',
+        borderColor: '#444',
+        borderWidth: 1,
+    },
+    buttonText: {
+        fontSize: 14,
+        color: '#333',
+        fontWeight: 'bold',
+    },
+    activeText: {
+        color: '#fff',
     },
 });

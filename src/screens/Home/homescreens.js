@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import NavbarComponent from '../../components/NavbarComponent';
 import IgrejasProximas from '../../components/IgrejasProximasScroll';
-
+import IgrejasMaisVisitadas from '../../components/IgrejasMaisVisitadas';
 export default function HomeScreen() {
     const [activeButton, setActiveButton] = useState('Home');
 
@@ -65,6 +65,7 @@ export default function HomeScreen() {
 
             <IgrejasProximas />
             <NavbarComponent />
+            <IgrejasMaisVisitadas/>
         </View>
     );
 }
@@ -75,13 +76,12 @@ const styles = StyleSheet.create({
         justifyContent: 'start',
         alignItems: 'center',
         backgroundColor: '#fff',
-        paddingTop: 50,
-        
+        paddingTop: 40,  // Reduzido para aproximar os elementos do topo
     },
     box: {
         alignItems: 'center',
         width: '90%',
-        paddingTop: 40,
+        paddingTop: 20, // Reduzido para aproximar os elementos do topo
     },
     rowContainer: {
         flexDirection: 'row',
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
         borderRadius: 15,
         paddingHorizontal: 15,
-        marginTop: 20,
+        marginTop: 20,  // Menor margem superior
         width: '90%',
         height: 50,
         shadowColor: '#000',
@@ -127,9 +127,8 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 25,
+        marginTop: 20,  // Menor margem superior
         width: '90%',
-        
     },
     button: {
         flex: 1,  

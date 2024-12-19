@@ -7,6 +7,9 @@ const IgrejasProximas = () => {
     { id: 1, name: 'Igreja São João', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 150 },
     { id: 2, name: 'Igreja Santa Rita', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/e0/caption.jpg?w=900&h=-1&s=1', distance: 200 },
     { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 120 },
+    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Capela-Dourada-Recife-768x577.jpg', distance: 120 },
+    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Matriz-de-Nossa-Senhora-do-Pilar-Ouro-Preto-768x512.jpg', distance: 120 },
+    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Nossa-Senhora-do-O-Sabara-768x511.jpg', distance: 120 },
   ];
 
   const [favorited, setFavorited] = useState({});
@@ -68,9 +71,10 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     backgroundColor: '#fff',
-    width: '95%',
+    width: '100%',
     alignSelf: 'center',
     marginBottom: 20,
+    marginTop: 20,
   },
   header: {
     flexDirection: 'row',
@@ -90,12 +94,14 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     marginTop: 20,
-    width: '100%',
+    width: '110%',
+    marginLeft: -16,   // Ajusta a margem para a esquerda para mover o scrollContainer
   },
   card: {
     width: 180,
-    height: 220,
-    marginRight: 20,
+    height: 230,
+    marginRight: 10,
+    marginLeft: 20,   // Adiciona margem à esquerda para mover as cards para a direita
     borderRadius: 15,
     overflow: 'hidden',
     shadowColor: '#000',
@@ -114,9 +120,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 50,
   },
-  favoriteButtonActive: {
-   
-  },
+  favoriteButtonActive: {},
   image: {
     width: '100%',
     height: '100%',
@@ -150,5 +154,6 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+
 
 export default IgrejasProximas;

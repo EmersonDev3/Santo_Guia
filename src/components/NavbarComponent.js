@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         backgroundColor: '#fff', 
-        height: 70,
+        height: 60,
         width: '100%',
-        position: 'absolute',
-        bottom: 0,
+        bottom: 5,
+    
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         paddingHorizontal: 15,

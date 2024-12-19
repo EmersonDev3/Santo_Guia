@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import NavbarComponent from '../../components/NavbarComponent';
-import IgrejasProximas from '../../components/IgrejasProximasScroll';
-import IgrejasMaisVisitadas from '../../components/IgrejasMaisVisitadas';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 export default function HomeScreen() {
     const [activeButton, setActiveButton] = useState('Home');
 
     return (
         <View style={styles.container}>
-            <View style={styles.box}>
-                <View style={styles.rowContainer}>
-                    <View style={styles.textsContainer}>
-                        <Text style={styles.smallText}>Oi, Oliver CEO</Text>
-                        <Text style={styles.largeText}>Explore Locations</Text>
-                    </View>
+            <View style={styles.header}>
+                <View style={styles.textsContainer}>
+                    <Text style={styles.largeText}>Explore Locations</Text>
                 </View>
+                <ImageBackground
+                    source={{ uri: 'https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg?auto=compress&cs=tinysrgb&w=600' }}
+                    style={styles.profileIcon}
+                    imageStyle={styles.profileImage}
+                >
+                </ImageBackground>
             </View>
 
             <View style={styles.searchContainer}>
@@ -23,6 +25,7 @@ export default function HomeScreen() {
                     placeholder="Buscar..."
                     placeholderTextColor="#aaa"
                 />
+                <Icon name="search" size={20} color="#aaa" style={styles.searchIcon} />
             </View>
 
             <View style={styles.buttonsContainer}>
@@ -62,10 +65,6 @@ export default function HomeScreen() {
                     </Text>
                 </TouchableOpacity>
             </View>
-
-            <IgrejasProximas />
-            <NavbarComponent />
-            <IgrejasMaisVisitadas/>
         </View>
     );
 }
@@ -73,46 +72,48 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'start',
-        alignItems: 'center',
         backgroundColor: '#fff',
-        paddingTop: 40,  // Reduzido para aproximar os elementos do topo
+        paddingTop: 80,
+        paddingHorizontal: 20,
     },
-    box: {
-        alignItems: 'center',
-        width: '90%',
-        paddingTop: 20, // Reduzido para aproximar os elementos do topo
-    },
-    rowContainer: {
+    header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
+        marginBottom: 20,
     },
     textsContainer: {
         justifyContent: 'center',
         alignItems: 'flex-start',
     },
-    smallText: {
-        fontSize: 18,
-        fontWeight: '400',
-        color: '#555',
-        marginBottom: 2,
-    },
     largeText: {
-        fontSize: 28,
+        fontSize: 26,
         fontWeight: 'bold',
         color: '#222',
+        marginLeft:10
+    },
+    profileIcon: {
+        width: 40,
+        height: 40,
+        borderRadius: 50 / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+    },
+    profileImage: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
     },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#f9f9f9',
         borderRadius: 15,
         paddingHorizontal: 15,
-        marginTop: 20,  // Menor margem superior
-        width: '90%',
         height: 50,
+        marginBottom: 20,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
@@ -124,29 +125,34 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#333',
     },
+    searchIcon: {
+        marginLeft: 10,
+    },
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,  // Menor margem superior
-        width: '90%',
+        width: '100%',
+        marginBottom: 20,
     },
     button: {
-        flex: 1,  
+        width: '22%',
         height: 40,
         backgroundColor: '#f9f9f9',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 5,
+        elevation: 0,
     },
     activeButton: {
         backgroundColor: '#222',
         borderColor: '#444',
         borderWidth: 1,
+        elevation: 2,
     },
     buttonText: {
         fontSize: 14,
-        color: '#333', 
+        color: '#B0B0B0',
         fontWeight: 'bold',
     },
     activeText: {

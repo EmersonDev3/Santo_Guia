@@ -26,7 +26,7 @@ const IgrejasProximas = () => {
       <View style={styles.header}>
         <Text style={styles.title}>Igrejas Próximas</Text>
         <TouchableOpacity>
-          <Text style={styles.viewAll}>Ver Tudo</Text>
+          <Text style={styles.viewAll}>Ver Tudo </Text>
         </TouchableOpacity>
       </View>
 
@@ -69,7 +69,7 @@ const IgrejasProximas = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    paddingHorizontal: 20,
     backgroundColor: '#fff',
     width: '100%',
     alignSelf: 'center',
@@ -86,29 +86,30 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
+    marginLeft:5
   },
   viewAll: {
     fontSize: 14,
     color: '#888',
     fontWeight: '500',
+    
   },
   scrollContainer: {
     marginTop: 20,
     width: '110%',
-    marginLeft: -16,   // Ajusta a margem para a esquerda para mover o scrollContainer
+    marginLeft: -16,   
   },
   card: {
-    width: 180,
-    height: 230,
-    marginRight: 10,
-    marginLeft: 20,   // Adiciona margem à esquerda para mover as cards para a direita
-    borderRadius: 15,
+    width: 160,
+    height: 190,
+    marginLeft: 20,   
+
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    elevation: 5,
+  
     position: 'relative',
     backgroundColor: '#fff',
   },

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-const IgrejasProximas = () => {
+const IgrejasDestaques = () => {
   const churches = [
     { 
       id: 1, 
@@ -62,12 +62,12 @@ const IgrejasProximas = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    paddingHorizontal: 20,
     backgroundColor: '#fff',
-    width: '95%',
+    width: '100%',
     alignSelf: 'center',
-    marginBottom: 20,
-    marginTop: -20,
+    marginBottom: 22,
+    marginTop: 10,
   },
   header: {
     flexDirection: 'row',
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#1a1a1a',
+    marginLeft:5
   },
   viewAll: {
     fontSize: 14,
@@ -87,17 +88,19 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     marginTop: 15,
-    width: '100%',
+    width: '110%',
+    marginLeft: -16,
   },
   card: {
     width: 300,
-    marginRight: 20,
+    marginRight:35,
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
     flexDirection: 'row',
     padding: 10,
     backgroundColor: '#fff',
+    marginLeft: 15,
   },
   image: {
     width: 120,
@@ -135,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IgrejasProximas;
+export default IgrejasDestaques;

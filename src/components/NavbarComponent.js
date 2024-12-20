@@ -1,51 +1,50 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Altere para o pacote de ícones que preferir
 
-export default function NavbarComponent() {
-    return (
-        <View style={styles.navbar}>
-            <TouchableOpacity style={styles.navItem}>
-                <Icon name="home" size={24} color="#444" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem}>
-                <Icon name="search" size={24} color="#444" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem}>
-                <Icon name="heart" size={24} color="#444" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem}>
-                <Icon name="bell" size={24} color="#444" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem}>
-                <Icon name="user-alt" size={24} color="#444" />
-            </TouchableOpacity>
-        </View>
-    );
-}
+const Navbar = () => {
+  return (
+    <View style={styles.navbar}>
+      {/* Ícones da navbar */}
+      <TouchableOpacity style={styles.iconContainer}>
+        <Icon name="home" size={28} color="#000" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.iconContainer}>
+        <Icon name="search" size={28} color="#000" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.iconContainer}>
+        <Icon name="notifications" size={28} color="#000" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.iconContainer}>
+        <Icon name="person" size={28} color="#000" />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    navbar: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        backgroundColor: '#fff', 
-        height: 60,
-        width: '100%',
-        bottom: 5,
+  navbar: {
+    position: 'absolute',  
+    bottom: 0,
+    left: 1,
+    right: 0,
+    height: 70,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    elevation: 5, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    width:'100%'
     
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        paddingHorizontal: 15,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: -2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 6,
-        elevation: 5, 
-    },
-    navItem: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10,
-    },
+  },
+  iconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
+
+export default Navbar;

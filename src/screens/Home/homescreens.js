@@ -11,9 +11,10 @@ import {
   Modal,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import NavbarComponent from '../../components/NavbarComponent'; // Certifique-se de que este componente foi exportado corretamente.
-import ModalComponente from '../../components/ModalComponente'; // Certifique-se de que este componente foi exportado corretamente.
-
+import NavbarComponent from '../../components/NavbarComponent'; 
+import ModalComponente from '../../components/ModalComponente'; 
+import IgrejasProximas from  '../../components/IgrejasMaisVisitadas';
+import IgrejasDestaques from  '../../components/IgrejasProximasScroll';
 export default function HomeScreen() {
   const [activeButton, setActiveButton] = useState('Home');
   const [isModalVisible, setModalVisible] = useState(false);
@@ -22,7 +23,7 @@ export default function HomeScreen() {
   const openModal = () => {
     setModalVisible(true);
     if (textInputRef.current) {
-      textInputRef.current.blur(); // Remove o foco do TextInput ao abrir o modal
+      textInputRef.current.blur(); 
     }
   };
 
@@ -90,7 +91,8 @@ export default function HomeScreen() {
           </TouchableOpacity>
         ))}
       </View>
-
+      <IgrejasDestaques></IgrejasDestaques>
+      <IgrejasProximas></IgrejasProximas>
       {/* Navbar */}
       <KeyboardAvoidingView
         style={{ flex: 1 }}

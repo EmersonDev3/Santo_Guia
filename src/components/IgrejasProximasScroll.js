@@ -4,12 +4,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const IgrejasProximas = () => {
   const churches = [
-    { id: 1, name: 'Igreja São João', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 150 },
-    { id: 2, name: 'Igreja Santa Rita', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/e0/caption.jpg?w=900&h=-1&s=1', distance: 200 },
-    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 120 },
-    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Capela-Dourada-Recife-768x577.jpg', distance: 120 },
-    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Matriz-de-Nossa-Senhora-do-Pilar-Ouro-Preto-768x512.jpg', distance: 120 },
-    { id: 3, name: 'Igreja Cristo Rei', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Nossa-Senhora-do-O-Sabara-768x511.jpg', distance: 120 },
+    { id: 6, name: 'Igreja São João', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 150 },
+    { id: 7, name: 'Igreja Santa Rita', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/e0/caption.jpg?w=900&h=-1&s=1', distance: 200 },
+    { id: 8, name: 'Igreja Cristo Rei 1', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 120 },
+    { id: 9, name: 'Igreja Cristo Rei 2', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Capela-Dourada-Recife-768x577.jpg', distance: 120 },
+    { id: 10, name: 'Igreja Cristo Rei 3', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Matriz-de-Nossa-Senhora-do-Pilar-Ouro-Preto-768x512.jpg', distance: 120 },
+    { id: 11, name: 'Igreja Cristo Rei 4', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Nossa-Senhora-do-O-Sabara-768x511.jpg', distance: 120 },
   ];
 
   const [favorited, setFavorited] = useState({});
@@ -35,8 +35,8 @@ const IgrejasProximas = () => {
         showsHorizontalScrollIndicator={false}
         style={styles.scrollContainer}
       >
-        {churches.map((church) => (
-          <View key={church.id} style={styles.card}>
+        {churches.map((church, index) => (
+          <View key={`${church.id}-${index}`} style={styles.card}>
             {/* Ícone de coração para favoritar */}
             <TouchableOpacity
               style={[styles.favoriteButton, favorited[church.id] && styles.favoriteButtonActive]}
@@ -86,13 +86,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
-    marginLeft:5
+    marginLeft: 5,
   },
   viewAll: {
     fontSize: 14,
     color: '#888',
     fontWeight: '500',
-    
   },
   scrollContainer: {
     marginTop: 20,
@@ -103,13 +102,11 @@ const styles = StyleSheet.create({
     width: 160,
     height: 190,
     marginLeft: 20,   
-
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-  
     position: 'relative',
     backgroundColor: '#fff',
   },
@@ -155,6 +152,5 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
-
 
 export default IgrejasProximas;

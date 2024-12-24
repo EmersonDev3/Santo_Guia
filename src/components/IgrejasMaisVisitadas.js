@@ -41,8 +41,8 @@ const IgrejasDestaques = () => {
         showsHorizontalScrollIndicator={false}
         style={styles.scrollContainer}
       >
-        {churches.map((church) => (
-          <View key={church.id} style={styles.card}>
+        {churches.map((church, index) => (
+          <View key={`${church.id}-${index}`} style={styles.card}>
             <Image source={{ uri: church.imageUrl }} style={styles.image} />
             
             <View style={styles.details}>

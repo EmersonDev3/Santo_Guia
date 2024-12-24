@@ -10,10 +10,10 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function ModalComponente() {
-  const [selectedDate, setSelectedDate] = useState(1); // Inicializa com o primeiro dia (ID: 1)
-  const [selectedEventType, setSelectedEventType] = useState(0); // Inicializa com o primeiro evento (índice: 0)
-  const [startTime, setStartTime] = useState(''); // Horário de início
-  const [endTime, setEndTime] = useState(''); // Horário de término
+  const [selectedDate, setSelectedDate] = useState(1); 
+  const [selectedEventType, setSelectedEventType] = useState(0); 
+  const [startTime, setStartTime] = useState(''); 
+  const [endTime, setEndTime] = useState(''); 
 
   // Datas disponíveis
   const dates = [
@@ -30,9 +30,9 @@ export default function ModalComponente() {
   const eventTypes = ['Missas', 'Confissão', 'Adoração'];
 
   useEffect(() => {
-    // Garante que o primeiro dia e o primeiro evento estarão selecionados ao abrir o modal
-    setSelectedDate(1); // Define o primeiro dia como selecionado
-    setSelectedEventType(0); // Define o primeiro evento como selecionado
+    
+    setSelectedDate(1);
+    setSelectedEventType(0);
   }, []);
 
   return (
@@ -62,16 +62,16 @@ export default function ModalComponente() {
                   key={date.id}
                   style={[
                     styles.dateBox,
-                    selectedDate === date.id && styles.selectedBox, // Adiciona estilo quando clicado
+                    selectedDate === date.id && styles.selectedBox, 
                   ]}
                   onPress={() =>
                     setSelectedDate(selectedDate === date.id ? null : date.id)
-                  } // Seleciona ou desmarca a data
+                  } 
                 >
                   <Text
                     style={[
                       styles.dateBoxText,
-                      selectedDate === date.id && styles.selectedText, // Muda a cor do texto ao selecionar
+                      selectedDate === date.id && styles.selectedText, 
                     ]}
                   >
                     {date.date}
@@ -96,18 +96,18 @@ export default function ModalComponente() {
                   key={index}
                   style={[
                     styles.optionButton,
-                    selectedEventType === index && styles.selectedBox, // Adiciona estilo quando clicado
+                    selectedEventType === index && styles.selectedBox, 
                   ]}
                   onPress={() =>
                     setSelectedEventType(
                       selectedEventType === index ? null : index
                     )
-                  } // Seleciona ou desmarca o evento
+                  } 
                 >
                   <Text
                     style={[
                       styles.optionText,
-                      selectedEventType === index && styles.selectedText, // Muda a cor do texto ao selecionar
+                      selectedEventType === index && styles.selectedText,  
                     ]}
                   >
                     {event}
@@ -123,16 +123,16 @@ export default function ModalComponente() {
                 style={styles.timeInput}
                 placeholder="Início (ex: 13:00)"
                 value={startTime}
-                onChangeText={setStartTime} // Atualiza o horário de início
-                keyboardType="numeric" // Apenas números
+                onChangeText={setStartTime} 
+                keyboardType="numeric" 
               />
               <Text style={styles.timeDivider}>até</Text>
               <TextInput
                 style={styles.timeInput}
                 placeholder="Término (ex: 17:00)"
                 value={endTime}
-                onChangeText={setEndTime} // Atualiza o horário de término
-                keyboardType="numeric" // Apenas números
+                onChangeText={setEndTime} 
+                keyboardType="numeric" 
               />
             </View>
             {/* Botão Buscar Resultados */}
@@ -219,8 +219,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   selectedBox: {
-    backgroundColor: '#333', // Cor de fundo ao selecionar
-    borderColor: '#333', // Cor da borda ao selecionar
+    backgroundColor: '#333', 
+    borderColor: '#333', 
   },
   dateBoxText: {
     fontSize: 15,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     color: '#555',
   },
   selectedText: {
-    color: '#FFF', // Cor do texto ao selecionar
+    color: '#FFF', 
   },
   eventTitle: {
     fontSize: 15,
@@ -286,16 +286,16 @@ const styles = StyleSheet.create({
   searchButton: {
     width: '100%',
     height: 60,
-    backgroundColor: '#333', // Cor de fundo do botão
-    borderRadius: 25, // Arredondar os cantos
+    backgroundColor: '#333', 
+    borderRadius: 25, 
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 45, // Espaço entre os elementos
-    elevation: 5, // Sombras
+    marginTop: 45, 
+    elevation: 5, 
   },
   searchButtonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff', // Cor do texto
+    color: '#fff', 
   },
 });

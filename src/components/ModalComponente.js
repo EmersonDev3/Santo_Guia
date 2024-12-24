@@ -8,6 +8,8 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function ModalComponente() {
   const [selectedDate, setSelectedDate] = useState(1); 
@@ -26,6 +28,15 @@ export default function ModalComponente() {
     { id: 7, day: 'Dom', date: '27' },
   ];
 
+  const navigation = useNavigation();
+
+
+  const searchResults = () => {
+    console.log('Buscando resultados...');
+    navigation.navigate('SearchResults'); // Navega para a tela de resultados
+  };
+
+ 
   // Tipos de eventos
   const eventTypes = ['Missas', 'Confissão', 'Adoração'];
 
@@ -133,10 +144,11 @@ export default function ModalComponente() {
                 value={endTime}
                 onChangeText={setEndTime} 
                 keyboardType="numeric" 
+                
               />
             </View>
             {/* Botão Buscar Resultados */}
-            <TouchableOpacity style={styles.searchButton} onPress={() => { /* Ação do botão */ }}>
+            <TouchableOpacity style={styles.searchButton} onPress={searchResults}>
               <Text style={styles.searchButtonText}>Buscar Resultados</Text>
             </TouchableOpacity>
 

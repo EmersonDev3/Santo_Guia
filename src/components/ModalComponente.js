@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: '#333',
-    marginTop: 40,
+    marginTop: 25,
   },
   dateContainer: {
     flexDirection: 'row',
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 20,
-    marginTop: 15,
+    marginTop: 20,
   },
   icon: {
     marginRight: 5,

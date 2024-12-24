@@ -1,73 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
   Modal,
-  PanResponder,
-  Dimensions,
   Text,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function ModalComponente({ setModalVisible }) {
-  const [pan, setPan] = useState({ y: 0 });
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const [selectedEvent, setSelectedEvent] = useState(null);
+export default function ModalComponente() {
+  const [selectedDate, setSelectedDate] = useState(1); // Inicializa com o primeiro dia (ID: 1)
+  const [selectedEventType, setSelectedEventType] = useState(0); // Inicializa com o primeiro evento (índice: 0)
+  const [startTime, setStartTime] = useState(''); // Horário de início
+  const [endTime, setEndTime] = useState(''); // Horário de término
 
-  const windowHeight = Dimensions.get('window').height;
+  // Datas disponíveis
+  const dates = [
+    { id: 1, day: 'Seg', date: '21' },
+    { id: 2, day: 'Ter', date: '22' },
+    { id: 3, day: 'Qua', date: '23' },
+    { id: 4, day: 'Qui', date: '24' },
+    { id: 5, day: 'Sex', date: '25' },
+    { id: 6, day: 'Sáb', date: '26' },
+    { id: 7, day: 'Dom', date: '27' },
+  ];
 
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderGrant: () => {},
-    onPanResponderMove: (_, gestureState) => {
-      setPan({ y: gestureState.dy });
-    },
-    onPanResponderRelease: (_, gestureState) => {
-      if (gestureState.dy > 150) {
-        setModalVisible(false);
-      }
-      setPan({ y: 0 });
-    },
-  });
+  // Tipos de eventos
+  const eventTypes = ['Missas', 'Confissão', 'Adoração'];
 
-  const getNextDates = () => {
-    const today = new Date();
-    const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-    let dates = [];
-
-    for (let i = 0; i < 7; i++) {
-      const nextDate = new Date();
-      nextDate.setDate(today.getDate() + i);
-      const day = nextDate.getDate();
-      const month = nextDate.getMonth() + 1;
-      const dayOfWeek = daysOfWeek[nextDate.getDay()];
-      dates.push({ day, month, dayOfWeek });
-    }
-
-    return dates;
-  };
-
-  const nextDates = getNextDates();
+  useEffect(() => {
+    // Garante que o primeiro dia e o primeiro evento estarão selecionados ao abrir o modal
+    setSelectedDate(1); // Define o primeiro dia como selecionado
+    setSelectedEventType(0); // Define o primeiro evento como selecionado
+  }, []);
 
   return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={true}
-      onRequestClose={() => setModalVisible(false)}
-    >
+    <Modal animationType="fade" transparent={true} visible={true}>
       <View style={styles.modalContainer}>
-        <View
-          style={[
-            styles.content,
-            {
-              transform: [{ translateY: pan.y }],
-            },
-          ]}
-          {...panResponder.panHandlers}
-        >
+        <View style={styles.content}>
+          {/* Cabeçalho */}
           <View style={styles.header}>
             <Text style={styles.title}>Agenda</Text>
             <View style={styles.dateContainer}>
@@ -81,65 +53,61 @@ export default function ModalComponente({ setModalVisible }) {
             </View>
           </View>
 
+          {/* Corpo */}
           <View style={styles.body}>
+            {/* Datas */}
             <View style={styles.datesContainer}>
-              {nextDates.map((date, index) => (
-                <View
-                  key={index}
+              {dates.map((date) => (
+                <TouchableOpacity
+                  key={date.id}
                   style={[
                     styles.dateBox,
-                    {
-                      backgroundColor:
-                        selectedIndex === index ? '#000' : '#FFF',
-                      borderColor: selectedIndex === index ? '#FFF' : '#000',
-                    },
+                    selectedDate === date.id && styles.selectedBox, // Adiciona estilo quando clicado
                   ]}
-                  onTouchStart={() => setSelectedIndex(index)}
-                  onTouchEnd={() => setSelectedIndex(null)}
+                  onPress={() =>
+                    setSelectedDate(selectedDate === date.id ? null : date.id)
+                  } // Seleciona ou desmarca a data
                 >
                   <Text
                     style={[
                       styles.dateBoxText,
-                      {
-                        color: selectedIndex === index ? '#FFF' : '#000',
-                      },
+                      selectedDate === date.id && styles.selectedText, // Muda a cor do texto ao selecionar
                     ]}
                   >
-                    {date.day}
+                    {date.date}
                   </Text>
                   <Text
                     style={[
                       styles.dayBoxText,
-                      {
-                        color: selectedIndex === index ? '#FFF' : '#555',
-                      },
+                      selectedDate === date.id && styles.selectedText,
                     ]}
                   >
-                    {date.dayOfWeek}
+                    {date.day}
                   </Text>
-                </View>
+                </TouchableOpacity>
               ))}
             </View>
 
+            {/* Título de Evento */}
             <Text style={styles.eventTitle}>Tipo de Evento</Text>
             <View style={styles.optionsContainer}>
-              {['Missas', 'confissão', 'Adoração'].map((event, index) => (
+              {eventTypes.map((event, index) => (
                 <TouchableOpacity
                   key={index}
                   style={[
                     styles.optionButton,
-                    {
-                      backgroundColor: selectedEvent === event ? '#333' : '#FFF',
-                    },
+                    selectedEventType === index && styles.selectedBox, // Adiciona estilo quando clicado
                   ]}
-                  onPress={() => setSelectedEvent(event)}
+                  onPress={() =>
+                    setSelectedEventType(
+                      selectedEventType === index ? null : index
+                    )
+                  } // Seleciona ou desmarca o evento
                 >
                   <Text
                     style={[
                       styles.optionText,
-                      {
-                        color: selectedEvent === event ? '#FFF' : '#000',
-                      },
+                      selectedEventType === index && styles.selectedText, // Muda a cor do texto ao selecionar
                     ]}
                   >
                     {event}
@@ -147,6 +115,31 @@ export default function ModalComponente({ setModalVisible }) {
                 </TouchableOpacity>
               ))}
             </View>
+
+            {/* Horários */}
+            <Text style={styles.eventTitle}>Horários</Text>
+            <View style={styles.timeContainer}>
+              <TextInput
+                style={styles.timeInput}
+                placeholder="Início (ex: 13:00)"
+                value={startTime}
+                onChangeText={setStartTime} // Atualiza o horário de início
+                keyboardType="numeric" // Apenas números
+              />
+              <Text style={styles.timeDivider}>até</Text>
+              <TextInput
+                style={styles.timeInput}
+                placeholder="Término (ex: 17:00)"
+                value={endTime}
+                onChangeText={setEndTime} // Atualiza o horário de término
+                keyboardType="numeric" // Apenas números
+              />
+            </View>
+            {/* Botão Buscar Resultados */}
+            <TouchableOpacity style={styles.searchButton} onPress={() => { /* Ação do botão */ }}>
+              <Text style={styles.searchButtonText}>Buscar Resultados</Text>
+            </TouchableOpacity>
+
           </View>
         </View>
       </View>
@@ -164,7 +157,7 @@ const styles = StyleSheet.create({
   },
   content: {
     width: '90%',
-    height: '65%',
+    height: '70%',
     backgroundColor: '#fff',
     borderRadius: 30,
     elevation: 10,
@@ -181,10 +174,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
   },
   title: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#333',
-    marginTop: 15,
+    marginTop: 40,
   },
   dateContainer: {
     flexDirection: 'row',
@@ -222,21 +215,52 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 3,
     borderWidth: 1,
+    borderColor: '#000',
+    backgroundColor: '#FFF',
+  },
+  selectedBox: {
+    backgroundColor: '#333', // Cor de fundo ao selecionar
+    borderColor: '#333', // Cor da borda ao selecionar
   },
   dateBoxText: {
     fontSize: 15,
     fontWeight: 'bold',
+    color: '#000',
   },
   dayBoxText: {
     fontSize: 10,
     color: '#555',
   },
+  selectedText: {
+    color: '#FFF', // Cor do texto ao selecionar
+  },
   eventTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 10,
+  },
+  timeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  timeInput: {
+    flex: 1,
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    fontSize: 14,
+    marginHorizontal: 5,
+    backgroundColor: '#fff',
+  },
+  timeDivider: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
   },
   optionsContainer: {
     flexDirection: 'row',
@@ -250,9 +274,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
+    borderColor: '#000',
+    backgroundColor: '#FFF',
   },
   optionText: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: '#000',
+  },
+
+  searchButton: {
+    width: '100%',
+    height: 60,
+    backgroundColor: '#333', // Cor de fundo do botão
+    borderRadius: 25, // Arredondar os cantos
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 45, // Espaço entre os elementos
+    elevation: 5, // Sombras
+  },
+  searchButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff', // Cor do texto
   },
 });

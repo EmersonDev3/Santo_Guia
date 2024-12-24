@@ -1,93 +1,97 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ImageBackground, KeyboardAvoidingView, Platform, Modal } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  Modal,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import IgrejasProximas from '../../components/IgrejasProximasScroll';
-import IgrejasDestaques from '../../components/IgrejasMaisVisitadas';
-import NavbarComponent from '../../components/NavbarComponent';
-import ModalComponente from '../../components/ModalComponente';
+import NavbarComponent from '../../components/NavbarComponent'; // Certifique-se de que este componente foi exportado corretamente.
+import ModalComponente from '../../components/ModalComponente'; // Certifique-se de que este componente foi exportado corretamente.
 
 export default function HomeScreen() {
   const [activeButton, setActiveButton] = useState('Home');
   const [isModalVisible, setModalVisible] = useState(false);
-  const textInputRef = useRef(null); 
+  const textInputRef = useRef(null);
 
   const openModal = () => {
     setModalVisible(true);
     if (textInputRef.current) {
-      textInputRef.current.blur(); // Remove o foco do TextInput ao abrir o modal , n apaga essa porra
+      textInputRef.current.blur(); // Remove o foco do TextInput ao abrir o modal
     }
   };
 
-  const closeModal = () => setModalVisible(false); 
+  const closeModal = () => setModalVisible(false);
 
   return (
     <View style={styles.container}>
+      {/* Cabeçalho */}
       <View style={styles.header}>
         <View style={styles.textsContainer}>
           <Text style={styles.largeText}>Explore Locations</Text>
         </View>
         <ImageBackground
-          source={{ uri: 'https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg?auto=compress&cs=tinysrgb&w=600' }}
+          source={{
+            uri: 'https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg?auto=compress&cs=tinysrgb&w=600',
+          }}
           style={styles.profileIcon}
           imageStyle={styles.profileImage}
         />
       </View>
 
+      {/* Campo de Busca */}
       <View style={styles.searchContainer}>
         <TextInput
-          ref={textInputRef} 
+          ref={textInputRef}
           style={styles.searchInput}
           placeholder="Buscar..."
           placeholderTextColor="#aaa"
-          onFocus={openModal} 
+          onFocus={openModal}
         />
-        {isModalVisible && (
-          <ModalComponente setModalVisible={setModalVisible} />
-        )}
         <Icon name="search" size={20} color="#aaa" style={styles.searchIcon} />
       </View>
 
+      {/* Modal de Busca */}
+      {isModalVisible && (
+        <Modal
+          visible={isModalVisible}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={closeModal}
+        >
+          <ModalComponente setModalVisible={setModalVisible} />
+        </Modal>
+      )}
+
+      {/* Botões de Navegação */}
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={[styles.button, activeButton === 'Home' && styles.activeButton]}
-          onPress={() => setActiveButton('Home')}
-        >
-          <Text style={[styles.buttonText, activeButton === 'Home' && styles.activeText]}>
-            Home
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, activeButton === 'Liturgia' && styles.activeButton]}
-          onPress={() => setActiveButton('Liturgia')}
-        >
-          <Text style={[styles.buttonText, activeButton === 'Liturgia' && styles.activeText]}>
-            Liturgia
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, activeButton === 'Eventos' && styles.activeButton]}
-          onPress={() => setActiveButton('Eventos')}
-        >
-          <Text style={[styles.buttonText, activeButton === 'Eventos' && styles.activeText]}>
-            Eventos
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, activeButton === 'Favoritos' && styles.activeButton]}
-          onPress={() => setActiveButton('Favoritos')}
-        >
-          <Text style={[styles.buttonText, activeButton === 'Favoritos' && styles.activeText]}>
-            Favoritos
-          </Text>
-        </TouchableOpacity>
+        {['Home', 'Liturgia', 'Eventos', 'Favoritos'].map((button) => (
+          <TouchableOpacity
+            key={button}
+            style={[
+              styles.button,
+              activeButton === button && styles.activeButton,
+            ]}
+            onPress={() => setActiveButton(button)}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                activeButton === button && styles.activeText,
+              ]}
+            >
+              {button}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
 
-      <IgrejasProximas />
-      <IgrejasDestaques />
-
+      {/* Navbar */}
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -95,16 +99,6 @@ export default function HomeScreen() {
       >
         <NavbarComponent />
       </KeyboardAvoidingView>
-
-      {/* ModalComponente */}
-      <Modal
-        visible={isModalVisible}
-        animationType="slide"
-        transparent={true}
-        onRequestClose={closeModal} 
-      >
-        <ModalComponente setModalVisible={setModalVisible} />
-      </Modal>
     </View>
   );
 }

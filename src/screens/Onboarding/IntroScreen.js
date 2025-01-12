@@ -9,19 +9,19 @@ const slides = [
        id: '1',
        title: 'Bem-vindo ao Santo Guia',
        description: 'Encontre a paz e a orientação que você procura',
-       image: require('../../assets/slide1.png'),
+       image: require('../../assets/rb_6082.png'),
    },
    {
        id: '2',
        title: 'Encontre Sua Igreja',
        description: 'Descubra igrejas próximas para orações, confissões e momentos de fé',
-       image: require('../../assets/slide2.png'),
+       image: require('../../assets/rb_6318.png'),
    },
    {
        id: '3',
        title: 'Fortaleça sua fé',
        description: 'Participe de atividades e eventos que vão renovar sua espiritualidade',
-       image: require('../../assets/slide3.png'),
+       image: require('../../assets/rb_6300.png'),
    },
 ];
 

@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
         paddingBottom: 30,
     },
     backButton: {
-        marginTop: 50,
-        marginLeft: 20,
+        marginTop: 60,
+        marginLeft: 10,
     },
     content: {
         flex: 1,

@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     backButton: {
-        marginTop: 50,
-        marginLeft: 20,
+        marginTop: 60,
+        marginLeft: 10,
     },
     content: {
         flex: 1,

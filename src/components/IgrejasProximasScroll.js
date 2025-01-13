@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'; 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const IgrejasProximas = () => {
   const churches = [
-    { id: 6, name: 'Igreja São João', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 150 },
-    { id: 7, name: 'Igreja Santa Rita', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/e0/caption.jpg?w=900&h=-1&s=1', distance: 200 },
-    { id: 8, name: 'Igreja Cristo Rei 1', imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/df/caption.jpg?w=900&h=-1&s=1', distance: 120 },
-    { id: 9, name: 'Igreja Cristo Rei 2', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Capela-Dourada-Recife-768x577.jpg', distance: 120 },
-    { id: 10, name: 'Igreja Cristo Rei 3', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Matriz-de-Nossa-Senhora-do-Pilar-Ouro-Preto-768x512.jpg', distance: 120 },
-    { id: 11, name: 'Igreja Cristo Rei 4', imageUrl: 'https://www.civitatis.com/blog/wp-content/uploads/2021/03/Igreja-Nossa-Senhora-do-O-Sabara-768x511.jpg', distance: 120 },
+    {
+      id: 6,
+      name: 'Capela Mater Dolorosa Dom Barreto',
+      imageUrl: 'https://lh5.googleusercontent.com/p/AF1QipNi7AhvKkSjsi6kJdzJs33rVYnfT0CwIXKX3l_T=w408-h315-k-no',
+    },
+    {
+      id: 7,
+      name: 'Paróquia de São Benedito',
+      imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/99/74/e0/caption.jpg?w=900&h=-1&s=1',
+    },
+    {
+      id: 8,
+      name: 'Igreja Nossa Senhora Do Amparo',
+      imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/ae/ea/3d/igreja-n-s-do-amparo.jpg',
+    },
   ];
 
   const [favorited, setFavorited] = useState({});
@@ -39,26 +48,23 @@ const IgrejasProximas = () => {
           <View key={`${church.id}-${index}`} style={styles.card}>
             {/* Ícone de coração para favoritar */}
             <TouchableOpacity
-              style={[styles.favoriteButton, favorited[church.id] && styles.favoriteButtonActive]}
+              style={[
+                styles.favoriteButton,
+                favorited[church.id] && styles.favoriteButtonActive,
+              ]}
               onPress={() => handleFavorite(church.id)}
             >
               <FontAwesome
                 name={favorited[church.id] ? 'heart' : 'heart-o'}
-                size={22}  // Tamanho reduzido
+                size={18}
                 color={favorited[church.id] ? '#FF6347' : '#fff'}
               />
             </TouchableOpacity>
             <Image source={{ uri: church.imageUrl }} style={styles.image} />
             <View style={styles.infoContainer}>
-              <Text style={styles.name}>{church.name}</Text>
-              <View style={styles.distanceContainer}>
-                <FontAwesome
-                  name="map-marker"
-                  size={18}
-                  color="#FF6347"
-                />
-                <Text style={styles.distanceText}>{church.distance} m</Text>
-              </View>
+              <Text style={styles.name} numberOfLines={2}>
+                {church.name}
+              </Text>
             </View>
           </View>
         ))}
@@ -96,12 +102,12 @@ const styles = StyleSheet.create({
   scrollContainer: {
     marginTop: 20,
     width: '110%',
-    marginLeft: -16,   
+    marginLeft: -16,
   },
   card: {
     width: 160,
-    height: 190,
-    marginLeft: 20,   
+    height: 200,
+    marginLeft: 20,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -135,21 +141,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   name: {
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: 'bold',
     color: '#fff',
-    marginBottom: 5,
-  },
-  distanceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 5,
-  },
-  distanceText: {
-    marginLeft: 5,
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#fff',
+    textAlign: 'left',
   },
 });
 

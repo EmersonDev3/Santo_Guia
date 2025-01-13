@@ -6,7 +6,7 @@ import LoginScreen from './src/screens/Onboarding/LoginScreen';
 import CreateScreen from './src/screens/Onboarding/createscreen';
 import HomeScreen from './src/screens/Home/homescreens';
 import SearchResults from './src/screens/Home/SearchResults';
-
+import ChurchDetails from './src/components/ChurchDetails';
 const Stack = createStackNavigator();
 
 
@@ -43,6 +43,11 @@ export default function App() {
                     name="SearchResults"
                     component={SearchResults}
                     options={{ headerShown: false }}
+                />
+
+                <Stack.Screen name="ChurchDetails" 
+                component={ChurchDetails} 
+                options={{ headerShown: false }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

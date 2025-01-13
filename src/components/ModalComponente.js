@@ -19,15 +19,15 @@ export default function ModalComponente() {
 
   // Datas disponíveis
   const dates = [
-    { id: 1, day: 'Seg', date: '21' },
-    { id: 2, day: 'Ter', date: '22' },
-    { id: 3, day: 'Qua', date: '23' },
-    { id: 4, day: 'Qui', date: '24' },
-    { id: 5, day: 'Sex', date: '25' },
-    { id: 6, day: 'Sáb', date: '26' },
-    { id: 7, day: 'Dom', date: '27' },
+    { id: 1, day: 'Seg', date: '13' },
+    { id: 2, day: 'Ter', date: '14' },
+    { id: 3, day: 'Qua', date: '15' },
+    { id: 4, day: 'Qui', date: '16' },
+    { id: 5, day: 'Sex', date: '17' },
+    { id: 6, day: 'Sáb', date: '18' },
+    { id: 7, day: 'Dom', date: '19' },
   ];
-
+  
   const navigation = useNavigation();
 
 
@@ -60,7 +60,7 @@ export default function ModalComponente() {
                 color="#007BFF"
                 style={styles.icon}
               />
-              <Text style={styles.dateText}>Jan 21/24</Text>
+              <Text style={styles.dateText}>Jan 13/25</Text>
             </View>
           </View>
 

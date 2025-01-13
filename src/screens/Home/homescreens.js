@@ -93,13 +93,14 @@ export default function HomeScreen() {
       </View>
       <IgrejasDestaques></IgrejasDestaques>
       <IgrejasProximas></IgrejasProximas>
+      <NavbarComponent />
       {/* Navbar */}
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={0}
       >
-        <NavbarComponent />
+       
       </KeyboardAvoidingView>
     </View>
   );
